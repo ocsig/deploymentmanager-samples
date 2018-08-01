@@ -56,7 +56,7 @@ gcloud deployment-manager deployments create my-network-deployment \
 ```
 
 
-### Deploying infrastructure with the FAAS tool
+### Deploying infrastructure with the Cloud-foundation tool
 
 **TO BE IMPLEMENTED**
 
