@@ -1,4 +1,4 @@
-# Foundations as a Service Project
+# Cloud Foundation Toolkit
 
 This project aims to provide a number of high-quality, production-ready GCP
 Deployment Manager templates, tools, example usage and documentation to help
@@ -7,9 +7,9 @@ enterprises to create their foundational infrastructure in Google Cloud.
 
 ## Usage
 
-The DM templates developed by this project can be used either (1) individually
-via the `gloud` utility, or (2) via the FAAS tool that will be able to link
-multiple unrelated templates together in order to deploy the foundation as a whole
+The Deployment Manager templates developed by this project can be used either (1) individually
+via the `gloud` utility, or (2) via the Cloud-foundation tool that will be able to link
+multiple unrelated templates together in order to deploy the foundation as a whole.
 
 ### Deploying infrastructure with individual templates via gcloud
 
