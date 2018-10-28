@@ -246,7 +246,7 @@ Which should yield the following result:
 
 Now we would like to create `proj1`, `proj2` and, `proj3` under our 3 folders, for that purpose import the project template in the imports section and add a new item under the resources object.
 
-For now let's keep the folder and hte project in as separated tasks, the folder IDs are exposed via DM Layout output we check how to use the folder ID reference later time.
+Note that a project and its resources must be in its own YAML file; here is the most minimalistic project we can build:
 
 ```yaml
 imports:
@@ -259,10 +259,21 @@ resources:
     properties:
       parent:
         type: folder
-        id: 528071353408
+        id: 740146709590
       billingAccountId: 123456-7890BD-CAFE04
-      activateApis:
-        - compute.googleapis.com
+      removeDefaultVPC: False
+      removeDefaultSA: False
 ```
 
-When in doubt of what the fields mean check the [project.py.schema](../../templates/project/project.py.schema) file for reference.
+When in doubt of what the fields mean check the [project.py.schema](../../templates/project/project.py.schema) file for reference; 
+
+Notewhorty items:
+
+* The `name` field reflects as project ID and must be globally unique.
+* The Default VPC and Service Account are removed by default by the project template.
+* The configuration above requires the DM-SA to have `Billing Account User` IAM role.
+* In case you are enabling APIs along with the project creation ensure to give the DM-SA the proper IAM rights to execute that action.
+
+![Projects Created](etc/getting-started-01-projects.png)
+
+These cover the basics to the getting started guide.
