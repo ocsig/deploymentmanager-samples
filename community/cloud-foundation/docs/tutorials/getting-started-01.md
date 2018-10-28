@@ -175,4 +175,94 @@ Also, note how the deployment manager service account is granted Project Creator
 
 Finding the Deployment Manager Service Account (let's call it DM-SA) is simple, look for the service account address, it's labeled with a **Cloud Services** prefix to the service account domain and has the project number as the identity. Here is an example: `1230123456789@cloudservices.gserviceaccount.com` typically with the name of `Google APIs Service Agent` [More info.](https://cloud.google.com/iam/docs/service-accounts?&_ga=2.8784828.-842298576.1540643080#google-managed_service_accounts)
 
-### Running a Simple example
+### Creating our YAML configuration
+
+To build our YAML file we first need to import the templates we need, you might choose to use a `symlink` or simply copy the contents of the template to your configuration folder.
+
+Create a folder and place the templates in it; copy the folder.yaml example so we can use it as a baseline:
+
+![Initial Setup](etc/getting-started-01-setup.gif)
+
+Now that you have your environment ready let's create our configuration file, under our Org we want to create 3 folders called `production`, `development`, `staging`.
+
+First thing we have to do is import the template we want to follow:
+
+```yaml
+imports:
+- path: templates/folder/folder.py
+  name: folder.py
+```
+
+Then we need to define our resources object, where we will indicate the name the object we are creating for deployment manager `resources.name` and the type of the resource which should point to our imported template name.
+
+```yaml
+resources:
+- name: env-folders
+  type: folder.py
+```
+
+![Resource Name](etc/getting-started-01-resource-name.png)
+
+Once we defined the type and the name of our resources all we have left is define the properties for our folders. This is what one folder configuration looks like:
+
+```yaml
+      - name: production
+        orgId: organizations/102938475619
+        displayName: Production
+```
+
+The configuration is passed as part of the folders object within property, which contains an array of folders. This is what the YAML looks like with the our 3 folder:
+
+```yaml
+imports:
+- path: templates/folder/folder.py
+  name: folder.py
+resources:
+- name: env-folders
+  type: folder.py
+  properties:
+    folders:
+      - name: production
+        orgId: organizations/102938475619
+        displayName: Production
+      - name: development
+        orgId: organizations/102938475619
+        displayName: Development
+      - name: stating
+        orgId: organizations/102938475619
+        displayName: Staging
+```
+
+Don't forget to update the Org ID to match your organization.
+
+At this point we can go ahead and create our folders to test our setup; save the YAML in a file called `folder-hierarchy.yaml` and pass it to deployment manager as input for the resource creation job.
+
+```shell
+gcloud deployment-manager deployments update env-folders --config folder-hierarchy.yaml
+```
+Which should yield the following result:
+
+![Folders Created](etc/getting-started-01-folders-created.png)
+
+Now we would like to create `proj1`, `proj2` and, `proj3` under our 3 folders, for that purpose import the project template in the imports section and add a new item under the resources object.
+
+For now let's keep the folder and hte project in as separated tasks, the folder IDs are exposed via DM Layout output we check how to use the folder ID reference later time.
+
+```yaml
+imports:
+  - path: templates/project/project.py
+    name: project.py
+
+resources:
+  - name: cft-tips-proj1
+    type: project.py
+    properties:
+      parent:
+        type: folder
+        id: 528071353408
+      billingAccountId: 123456-7890BD-CAFE04
+      activateApis:
+        - compute.googleapis.com
+```
+
+When in doubt of what the fields mean check the [project.py.schema](../../templates/project/project.py.schema) file for reference.
