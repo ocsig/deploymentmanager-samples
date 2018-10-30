@@ -238,7 +238,7 @@ Don't forget to update the Org ID to match your organization.
 At this point we can go ahead and create our folders to test our setup; save the YAML in a file called `folder-hierarchy.yaml` and pass it to deployment manager as input for the resource creation job.
 
 ```shell
-gcloud deployment-manager deployments update env-folders --config folder-hierarchy.yaml
+gcloud deployment-manager deployments create env-folders --config folder-hierarchy.yaml
 ```
 Which should yield the following result:
 
