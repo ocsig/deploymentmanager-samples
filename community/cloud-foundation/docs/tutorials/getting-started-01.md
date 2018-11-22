@@ -28,8 +28,8 @@ template_name/
 │   ├── example1.yaml
 │   └── example2.yaml
 ├── tests/integration/
-│   ├── bigquery.bats
-│   └── bigquery.yaml
+│   ├── template_name.bats
+│   └── template_name.yaml
 ├── template_name.py
 ├── template_name.schema
 └── README.md
