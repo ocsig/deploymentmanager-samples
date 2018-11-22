@@ -168,7 +168,7 @@ The below shows those 5 steps being executed:
 
 ![Project Creator](etc/getting-started-01-project-creator.gif)
 
-It's important to note that your project must be globally unique for this to work; therefore it's recommended that you either put your Org name as a prefix or add a random number suffix if you are unsure the requiremnt is met.
+It's important to note that your project must be globally unique for this to work; therefore it's recommended that you either put your Org name as a prefix or add a random number suffix if you are unsure the requirement is met.
 
 Also, note how the deployment manager service account is granted Project Creator and Folder Admin permissions at the Org level since we want to be able to create Folders and Projects.
 
@@ -202,7 +202,7 @@ resources:
 
 ![Resource Name](etc/getting-started-01-resource-name.png)
 
-Once we defined the type and the name of our resources all we have left is define the properties for our folders. This is what one folder configuration looks like:
+Once we defined the type and the name of our resources all we have left is to define the properties for our folders. This is what one folder configuration looks like:
 
 ```yaml
       - name: production
@@ -210,7 +210,7 @@ Once we defined the type and the name of our resources all we have left is defin
         displayName: Production
 ```
 
-The configuration is passed as part of the folders object within property, which contains an array of folders. This is what the YAML looks like with the our 3 folder:
+The configuration is passed as part of the folders object within property, which contains an array of folders. This is what the YAML looks like with our 3 folders:
 
 ```yaml
 imports:
@@ -234,7 +234,7 @@ resources:
 
 Don't forget to update the Org ID to match your organization.
 
-At this point we can go ahead and create our folders to test our setup; save the YAML in a file called `folder-hierarchy.yaml` and pass it to deployment manager as input for the resource creation job.
+At this point we can go ahead and create our folders to test the setup; save the YAML in a file called `folder-hierarchy.yaml` and pass it to deployment manager as input for the resource creation job.
 
 ```shell
 gcloud deployment-manager deployments create env-folders --config folder-hierarchy.yaml
@@ -264,7 +264,7 @@ resources:
       removeDefaultSA: False
 ```
 
-When in doubt of what the fields mean check the [project.py.schema](../../templates/project/project.py.schema) file for reference; 
+When in doubt of what the fields means check the [project.py.schema](../../templates/project/project.py.schema) file for reference; 
 
 Notewhorty items:
 
