@@ -65,7 +65,6 @@ required:
 properties:
   property_name:
     type: string
-    pattern: ^[0-9]{8,25}$
     description: |
       my property name!
 
@@ -95,7 +94,7 @@ We should briefly talk about how the resources get created.
 
 * Step 1: The user/system calls Deployment Manager (DM) passing the template as input, in this initial step the account in use is the user/system identity.
 * Step 2: DM parses the input (among other things) and then triggers the actions specified in the template to create or update the resources.
-* Step 3: The DM service executes the template actoin using it's own service account identity
+* Step 3: The DM service executes the template action using it's own service account identity
 * Step 4: The resources API respond to DM with the status of the operation and DM responds back to the user.
 
 
